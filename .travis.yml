@@ -17,7 +17,7 @@ after_success:
   - docker build -t utkarsh19/multi-nginx ./nginx
   - docker build -t utkarsh19/multi-worker ./worker
 
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
   - docker push utkarsh19/multi-client
   - docker push utkarsh19/multi-server
