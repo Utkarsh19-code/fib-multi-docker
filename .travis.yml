@@ -1,0 +1,25 @@
+language: generic
+
+service:
+  - docker
+
+before_install:
+  - docker build -t utkarsh19/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true USERNAME/react-test npm test
+
+after_success:
+  - docker build -t utkarsh19/multi-client ./client
+  - docker build -t utkarsh19/multi-server ./server
+  - docker build -t utkarsh19/multi-nginx ./nginx
+  - docker build -t utkarsh19/multi-worker ./worker
+
+  echo "$DOCKER_PASSWORD" | docker login "$DOCKER_ID" --password-stdin
+
+  - docker push utkarsh19/multi-client
+  - docker push utkarsh19/multi-server
+  - docker push utkarsh19/multi-nginx
+  - docker push utkarsh19/multi-worker
+  
+
