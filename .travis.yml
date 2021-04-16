@@ -11,12 +11,6 @@ before_install:
 script:
   - docker run -e CI=true utkarsh19/react-test npm test
 
-deploy:
-  provider: script
-  script: bash docker_push
-  on:
-    branch: master  
-
 after_success:
   - docker build -t utkarsh19/multi-client ./client
   - docker build -t utkarsh19/multi-server ./server
