@@ -19,9 +19,9 @@ after_success:
 
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-  - docker push utkarsh19/multi-client
-  - docker push utkarsh19/multi-server
-  - docker push utkarsh19/multi-nginx
-  - docker push utkarsh19/multi-worker
+  - docker push utkarsh19/multi-client:latest
+  - docker push utkarsh19/multi-server:latest
+  - docker push utkarsh19/multi-nginx:latest
+  - docker push utkarsh19/multi-worker:latest
   
 
